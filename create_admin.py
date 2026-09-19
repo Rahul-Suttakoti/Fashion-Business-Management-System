@@ -7,7 +7,7 @@ import binascii, hashlib
 from dotenv import load_dotenv
 import mysql.connector
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".venv", ".env"))
 
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),
@@ -29,6 +29,16 @@ def create_admin(username, password):
     conn = mysql.connector.connect(**DB_CONFIG)
     cur = conn.cursor()
     try:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS app_users (
+                app_user_id INT PRIMARY KEY AUTO_INCREMENT,
+                username VARCHAR(100) UNIQUE,
+                role VARCHAR(50),
+                password_hash VARCHAR(128),
+                salt VARCHAR(64),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
         cur.execute("INSERT INTO app_users (username, role, password_hash, salt) VALUES (%s,%s,%s,%s)",
                     (username, 'admin', phash, salt))
         conn.commit()

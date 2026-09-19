@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Inventory_Alerts (
 -- (This enforces referential integrity for alerts)
 -- If Inventory_Alerts already exists and FK doesn't, this will add it.
 ALTER TABLE Inventory_Alerts
-  ADD CONSTRAINT IF NOT EXISTS fk_inventoryalerts_item
+    ADD CONSTRAINT fk_inventoryalerts_item
     FOREIGN KEY (item_id) REFERENCES Clothing_Items(item_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE$$

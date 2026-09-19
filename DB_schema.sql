@@ -332,7 +332,7 @@ ALTER TABLE Inventory
   ADD CONSTRAINT uq_inventory_item UNIQUE (item_id);
 
 -- Helpful indexes (no semantic change)
-CREATE INDEX IF NOT EXISTS idx_ci_collection_id ON Clothing_Items(collection_id);
-CREATE INDEX IF NOT EXISTS idx_fabrics_supplier_id ON Fabrics(supplier_id);
-CREATE INDEX IF NOT EXISTS idx_inv_item_id ON Inventory(item_id);
-CREATE INDEX IF NOT EXISTS idx_cif_item_fabric ON Clothing_Item_Fabrics(item_id, fabric_id);
+CREATE INDEX idx_ci_collection_id ON Clothing_Items(collection_id);
+CREATE INDEX idx_fabrics_supplier_id ON Fabrics(supplier_id);
+CREATE INDEX idx_inv_item_id ON Inventory(item_id);
+CREATE INDEX idx_cif_item_fabric ON Clothing_Item_Fabrics(item_id, fabric_id);

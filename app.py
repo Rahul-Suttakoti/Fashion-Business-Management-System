@@ -27,7 +27,7 @@ import os as pyos
 import matplotlib.pyplot as plt
 import datetime as _dt
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".venv", ".env"))
 
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),
